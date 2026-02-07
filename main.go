@@ -57,9 +57,9 @@ func main() {
 		log.Fatal("Invalid port range: ", err)
 	}
 
-	allowedProtocol := strings.ToLower(strings.TrimSpace(*protocol))
-	if allowedProtocol != "tcp" && allowedProtocol != "udp" {
-		log.Fatal("Invalid protocol: ", allowedProtocol)
+	proto := strings.ToLower(strings.TrimSpace(*protocol))
+	if proto != "tcp" && proto != "udp" {
+		log.Fatal("Invalid protocol: ", proto)
 	}
 
 	jobs := make(chan Job, 1024)
@@ -100,7 +100,7 @@ func main() {
 				jobs <- Job{
 					Target:   target,
 					Port:     port,
-					Protocol: allowedProtocol,
+					Protocol: proto,
 				}
 			}
 		}
