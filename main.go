@@ -67,7 +67,7 @@ func main() {
 
 	var limiter *rate.Limiter
 	if *rateLimit > 0 {
-		limiter = rate.NewLimiter(rate.Limit(*rateLimit), 1)
+		limiter = rate.NewLimiter(rate.Limit(*rateLimit), *workers)
 	} else {
 		limiter = rate.NewLimiter(rate.Inf, 0)
 	}
